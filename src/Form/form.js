@@ -2,11 +2,13 @@ import React from 'react'
 import './form.css'
 import Button from '../Button/button'
 let clickbutton = () => {
-    alert ('hello');
+    return(
+        <div></div>
+    )
 }
 
 
-let Form = () => {
+const Form = () => {
     return(
         <div className ='div_form'>
             <div>

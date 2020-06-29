@@ -8,17 +8,25 @@ const MyPosts = (props) => {
 
   const postItems = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} />)
 
-  return (
+  let newText = React.createRef()
+
+  let addPost = () => {
+    let text = newText.current.value;
+    props.addPostGlobal(text);
+    newText.current.value =" ";
+  }
+
+ return (
     <div className={styles.postsBlock}>
       <h3>
         My posts
       </h3>
       <div>
         <div>
-          <textarea></textarea>
+          <textarea ref = {newText}></textarea>
         </div>
         <div>
-          <button className={styles.add}>Add post</button>
+          <button className={styles.add} onClick={addPost}>Add post</button>
         </div>
       </div>
       <div className={styles.posts}>

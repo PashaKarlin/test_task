@@ -17,16 +17,22 @@ const NavBar = (props) => {
         </NavLink>
       </div>
       <div className={styles.item}>
-        <a>News</a>
+        <NavLink to = '/'  activeClassName = {styles.activeLink}>
+          News
+        </NavLink>
       </div>
       <div className={styles.item}>
-        <a>Music</a>
+        <NavLink to = '/'  activeClassName = {styles.activeLink}>
+          Music
+        </NavLink>
       </div>
       <div className={styles.item}>
-        <a>Settings</a>
+        <NavLink to = '/'  activeClassName = {styles.activeLink}>
+        Settings
+        </NavLink>
       </div>
       <h3>
-        <Friends state = {props.state}/>
+        {/* <Friends state = {props.state.Friends}/> */}
       </h3>
     </nav>
   );

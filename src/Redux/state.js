@@ -1,45 +1,130 @@
-import { rerenderEntireTree } from "../render";
 
-let state = {
-    profilePage: {
-        posts: [
-            { id: 1, message: 'Hi, how are you', likesCount: 12 },
-            { id: 2, message: 'Its my first post', likesCount: 21 }
-        ]
+let store = {
+    _state: {
+        profilePage: {
+            posts: [
+                { id: 1, message: 'Hi, how are you', likesCount: 12 },
+                { id: 2, message: 'Its my first post', likesCount: 21 }
+            ],
+            newPostText: ''
+        },
+        dialogsPage: {
+            messages: [
+                { id: 1, message: 'Hi' },
+                { id: 2, message: 'How are you?' },
+                { id: 3, message: 'Yo' },
+                { id: 4, message: 'Yewwww' },
+                { id: 5, message: 'HAllooooo' },
+            ],
+            dialogs: [
+                { id: 1, name: 'Pasha' },
+                { id: 2, name: 'Mitya' },
+                { id: 3, name: 'Tolik' },
+                { id: 4, name: 'Sanya' },
+                { id: 5, name: 'Vlad' },
+            ],
+        },
+        sidebar: {
+            friends: [
+                { name: 'Tolya', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
+                { name: 'Max', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
+                { name: 'Mitya', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
+            ]
+        },
     },
-    dialogsPage: {
-        messages: [
-            { id: 1, message: 'Hi' },
-            { id: 2, message: 'How are you?' },
-            { id: 3, message: 'Yo' },
-            { id: 4, message: 'Yewwww' },
-            { id: 5, message: 'HAllooooo' },
-        ],
-        dialogs: [
-            { id: 1, name: 'Pasha' },
-            { id: 2, name: 'Mitya' },
-            { id: 3, name: 'Tolik' },
-            { id: 4, name: 'Sanya' },
-            { id: 5, name: 'Vlad' },
-        ],
+    getState() {
+        return this._state
     },
-    sidebar: {
-        friends: [
-            { name: 'Tolya', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
-            { name: 'Max', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
-            { name: 'Mitya', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
-        ]
+    addPostGlobal() {
+        let newPost = {
+            id: 5,
+            message: this._state.profilePage.newPostText,
+            likesCount: 0,
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+
+        this._callSubscriber(store);
     },
+    updateNewPostText(newText) {
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state);
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+    _callSubscriber() {
+        console.log('Чисто ради наблюдателя')
+    }
 }
 
-export let addPostGlobal = (newMessage) =>{
-    let newPost = {
-        id:5,
-        message : newMessage,
-        likesCount: 0,
-    };
-    state.profilePage.posts.push(newPost);
-    rerenderEntireTree(state);
-}
 
-export default state;
+export default store;
+
+
+
+
+
+
+
+
+
+
+// let rerenderEntireTree = () => {
+
+// }
+
+// let state = {
+//         profilePage: {
+//             posts: [
+//                 { id: 1, message: 'Hi, how are you', likesCount: 12 },
+//                 { id: 2, message: 'Its my first post', likesCount: 21 }
+//             ],
+//             newPostText: ''
+//         },
+//         dialogsPage: {
+//             messages: [
+//                 { id: 1, message: 'Hi' },
+//                 { id: 2, message: 'How are you?' },
+//                 { id: 3, message: 'Yo' },
+//                 { id: 4, message: 'Yewwww' },
+//                 { id: 5, message: 'HAllooooo' },
+//             ],
+//             dialogs: [
+//                 { id: 1, name: 'Pasha' },
+//                 { id: 2, name: 'Mitya' },
+//                 { id: 3, name: 'Tolik' },
+//                 { id: 4, name: 'Sanya' },
+//                 { id: 5, name: 'Vlad' },
+//             ],
+//         },
+//         sidebar: {
+//             friends: [
+//                 { name: 'Tolya', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
+//                 { name: 'Max', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
+//                 { name: 'Mitya', age: '20', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/240px-Ski_trail_rating_symbol-green_circle.svg.png' },
+//             ]
+//         },
+//     }
+
+//     export const addPostGlobal = () =>{
+//         let newPost = {
+//             id:5,
+//             message : state.profilePage.newPostText,
+//             likesCount: 0,
+//         };
+//         state.profilePage.posts.push(newPost);
+//         updateNewPostText(" ")
+
+//         rerenderEntireTree(state);
+//     }
+//     export const updateNewPostText = (newText) =>{
+//         state.profilePage.newPostText= newText;
+//         rerenderEntireTree(state);
+//     }
+
+//     export const subscribe = (observer) => {
+//         rerenderEntireTree = observer;
+//     }
+
+// export default state;

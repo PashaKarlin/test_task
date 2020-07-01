@@ -4,6 +4,7 @@ import Post from '../MyPosts/Post/Post'
 
 
 
+
 const MyPosts = (props) => {
 
   const postItems = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount} />)
@@ -11,9 +12,11 @@ const MyPosts = (props) => {
   let newText = React.createRef()
 
   let addPost = () => {
+    props.addPostGlobal();
+  }
+  let onPostChange = () => {
     let text = newText.current.value;
-    props.addPostGlobal(text);
-    newText.current.value =" ";
+    props.updateNewPostText(text);
   }
 
  return (
@@ -23,7 +26,7 @@ const MyPosts = (props) => {
       </h3>
       <div>
         <div>
-          <textarea ref = {newText}></textarea>
+          <textarea ref = {newText} onChange = {onPostChange} value = {props.newPostText}/> 
         </div>
         <div>
           <button className={styles.add} onClick={addPost}>Add post</button>

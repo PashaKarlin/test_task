@@ -6,7 +6,7 @@ const ProfileInfo = () => {
   return (
     <div>
       <div >
-        <img src='https://i.imgur.com/RRUe0Mo.png' className='background_img' />
+        <img src='https://i.imgur.com/RRUe0Mo.png' className='background_img' alt=' '/>
       </div>
       <div className={styles.descriptionBlock}>
         profile

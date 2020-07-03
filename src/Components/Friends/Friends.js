@@ -4,7 +4,6 @@ import styles from './Friends.module.css'
 
 
 const Friends = (props) => {
-
     const friendsData = props.state.map(friend => <Friend name={friend.name} src={friend.src} />)
 
     return (

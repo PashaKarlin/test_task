@@ -4,10 +4,10 @@ import styles from './Friends.module.css'
 
 
 const Friends = (props) => {
-    const friendsData = props.state.sidebar.friends.map(friend => <Friend name={friend.name} src={friend.src} />)
+    const friendsData = props.friends.map(friend => <Friend name={friend.name} src={friend.src} />)
 
     return (
-        <div className = {styles.friendsBlock}>
+        <div className={styles.friendsBlock}>
             {friendsData}
         </div>
     )

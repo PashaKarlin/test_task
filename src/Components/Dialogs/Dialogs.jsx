@@ -7,18 +7,18 @@ import DialogItem from './DialogComponent/DialogItem'
 
 const Dialogs = (props) => {
 
-    let dialogsItems = props.dialogsPage.dialogs.map(person => <DialogItem name={person.name} id={person.id} />)
+    let dialogsItems = props.dialogsPage.dialogs.map(person => <DialogItem name={person.name} id={person.id} key={person.id} />)
 
-    let messageItems = props.dialogsPage.messages.map(element => <Message message={element.message} />)
+    let messageItems = props.dialogsPage.messages.map(element => <Message message={element.message} key={element.id}/>)
 
     let onSendMessage = () => {
         props.sendMessage()
     };
     let onNewMessageChange = (event) => {
         let body = event.target.value
-        props.newMessageChange(body)
+        props.updateNewMessageBody(body)
     }
-    
+
 
     return (
         <div className={styles.dialogs}>
@@ -29,10 +29,10 @@ const Dialogs = (props) => {
                 <div>{messageItems}</div>
                 <div>
                     <div>
-                        <textarea 
-                            value={props.newMessageBody} 
-                            placeholder='Enter your message' 
-                            onChange ={onNewMessageChange}/>
+                        <textarea
+                            value={props.dialogsPage.newMessageBody}
+                            placeholder='Enter your message'
+                            onChange={onNewMessageChange} />
                     </div>
                     <div>
                         <button onClick={onSendMessage}>Send Message</button>

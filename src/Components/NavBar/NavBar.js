@@ -38,7 +38,7 @@ const NavBar = (props) => {
         </NavLink>
       </div>
       <h3>
-        <FriendsContainer/>
+        <FriendsContainer />
       </h3>
     </nav>
   );

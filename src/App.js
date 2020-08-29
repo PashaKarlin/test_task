@@ -7,7 +7,6 @@ import { Route, BrowserRouter } from 'react-router-dom'
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 
-
 function App(props) {
   return (
     <BrowserRouter>

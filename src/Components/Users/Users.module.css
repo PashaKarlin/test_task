@@ -3,3 +3,13 @@ width: 70px;
 height:auto;
 
 }
+.selectedPage{
+    font-weight: bold;
+}
+.pageNumber{
+    display: inline-block;
+    margin-right: 3px;
+}
+.pageNumber:hover{
+    cursor: pointer;
+}

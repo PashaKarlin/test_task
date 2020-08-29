@@ -13,8 +13,8 @@ const MyPosts = (props) => {
     props.addPost()
   }
 
-  let onPostChange = (event) => {
-    let text = event.target.value;
+  let onPostChange = (e) => {
+    let text = e.target.value;
     props.updateNewPostText(text)
   }
 
